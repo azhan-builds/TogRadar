@@ -2,18 +2,14 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>TogRadar</title>
+        <title>TogRADAR</title>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-        <style>
-            html, body, #map {height: 100%; margin: 0; }
-        </style>
+        <link rel="stylesheet" href="style.css"/>
     </head>
+
     <body>
         <div id="map"></div>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-        <script>
-            const map = L.map('map').setView([65, 13], 5)
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'&copy; OpenStreetMap contributors'}).addTo(map)
-        </script>
+        <script src="script.js"></script>
     </body>
 </html>
