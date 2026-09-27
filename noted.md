@@ -14,3 +14,9 @@ No errors so far other than some stupid typos creating issue. Fixed them and mov
 
 hours: 50min
 screenshots:
+
+Note 3
+Title: Train now Glide.
+Content: In the last update, i added markers for the trains so the trains are visible on the map. They used to snap to their new location every few seconds, that didn't felt pleasent so i made sure that they glide instead of snapping. I used requestAnimationFrame for this. However, the motion still doesn't feel continous partly because Entur's updates arrive once every few seconds, instead of once every second. Solving this is my next goal.
+Hours:1hour 15 min.
+
