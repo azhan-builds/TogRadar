@@ -1,6 +1,7 @@
 html, body, #map {
     height: 100%;
     margin: 0;
+    background: #1a1a1a;
 }
 
 #count {
@@ -13,4 +14,41 @@ html, body, #map {
     font-family: sans-serif;
     border-radius: 4px;
     z-index: 1000;
+}
+
+#legend {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;
+    background: rgba(0,0,0,0.6);
+    color:white;
+    padding: 8px 10px;
+    font-family: sans-serif;
+    font-size: 13px;
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+#legend div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 2px 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green {background: #51cf66;}
+.orange {background: #ffa94d;}
+.red {background: #ff6b6b;}
+.grey {background: #868e96}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #222;
+    color: white;
 }

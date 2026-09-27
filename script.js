@@ -1,7 +1,9 @@
 const map = L.map('map').setView([65, 13], 5)
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors'
+L.tileLayer('https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=cb1_40e4_1_ca7246214266a2c80acc8b4c', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  subdomains: 'abcd',
+  maxZoom: 19
 }).addTo(map)
 
 const socket = new WebSocket('wss://api.entur.io/realtime/v2/vehicles/subscriptions', 'graphql-transport-ws')
@@ -42,18 +44,25 @@ function popupText(v) {
   }
   return code + ' ' + name + '<br>' + delayText
 }
+function delayColor(delay) {
+  if (delay == null) return '#868e96'
+  if (delay > 300) return '#ff6b6b'
+  if (delay > 60) return '#ffa94d'
+  return '#51cf66'
+}
 function updateVehicles(vehicles) {
   const now = performance.now()
 
   for (const v of vehicles) {
       if (!v.vehicleId || !v.location || v.location.latitude == null || v.location.longitude == null) continue
       const pos = [v.location.latitude, v.location.longitude]
+      const color = delayColor(v.delay)
       let marker = markers[v.vehicleId]
       if (!marker) {
         marker = L.circleMarker(pos, {
           radius: 5,
-          color: '#4dabf7',
-          fillColor: '#4dabf7',
+          color: color,
+          fillColor: color,
           fillOpacity:0.9
         }).addTo(map)
         marker.animDuration = 0
@@ -61,6 +70,7 @@ function updateVehicles(vehicles) {
         markers[v.vehicleId] = marker
       } else {
         marker.animDuration = Math.min(Math.max(now - marker.lastUpdate, 1000), 90000)
+        marker.setStyle({color:color, fillColor: color})
       }
       marker.data = v
       marker.from = marker.getLatLng()
